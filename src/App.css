@@ -2,7 +2,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #f4f4f9;
+  color: #333;
 }
 
 /* App Container */
@@ -16,12 +17,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20vh; /* Center the input bar vertically in the viewport */
+  margin: 20px 0;
 }
 
 /* Search Bar */
 .search-bar {
-  width: 60%; /* Make the input bar longer */
+  width: 60%; /* Input bar length */
   padding: 15px;
   font-size: 18px;
   border: 1px solid #ccc;
@@ -39,17 +40,17 @@ body {
 
 /* Country Card */
 .countryCard {
-  background-color: white;
+  background: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.3s;
 }
 
 .countryCard:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
+  transform: scale(1.05);
 }
 
 .countryFlag {
@@ -60,5 +61,6 @@ body {
 
 .countryName {
   font-size: 16px;
-  color: #333;
+  font-weight: bold;
+  margin: 5px 0 0;
 }

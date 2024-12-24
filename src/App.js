@@ -8,7 +8,12 @@ const App = () => {
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch countries");
+        }
+        return response.json();
+      })
       .then((data) => {
         const sortedData = data.sort((a, b) =>
           a.name.common.localeCompare(b.name.common)
@@ -16,14 +21,16 @@ const App = () => {
         setCountries(sortedData);
         setFilteredCountries(sortedData);
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, []);
 
   const handleSearch = (event) => {
-    const text = event.target.value.toLowerCase();
-    setSearchText(text);
+    const searchTerm = event.target.value.toLowerCase();
+    setSearchText(searchTerm);
     const filtered = countries.filter((country) =>
-      country.name.common.toLowerCase().includes(text)
+      country.name.common.toLowerCase().includes(searchTerm)
     );
     setFilteredCountries(filtered);
   };
@@ -37,20 +44,23 @@ const App = () => {
           value={searchText}
           onChange={handleSearch}
           className="search-bar"
-          data-cy="searchInput"
         />
       </div>
       <div className="grid-container">
-        {filteredCountries.map((country) => (
-          <div key={country.cca3} className="countryCard">
-            <img
-              src={country.flags.svg}
-              alt={`${country.name.common} flag`}
-              className="countryFlag"
-            />
-            <h2 className="countryName">{country.name.common}</h2>
-          </div>
-        ))}
+        {filteredCountries.length > 0 ? (
+          filteredCountries.map((country) => (
+            <div key={country.cca3} className="countryCard">
+              <img
+                src={country.flags.svg}
+                alt={`${country.name.common} flag`}
+                className="countryFlag"
+              />
+              <h2 className="countryName">{country.name.common}</h2>
+            </div>
+          ))
+        ) : (
+          <p>No results found</p>
+        )}
       </div>
     </div>
   );
