@@ -10,7 +10,9 @@ const App = () => {
     fetch("https://restcountries.com/v3.1/all")
       .then((response) => response.json())
       .then((data) => {
-        const sortedData = data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+        const sortedData = data.sort((a, b) =>
+          a.name.common.localeCompare(b.name.common)
+        );
         setCountries(sortedData);
         setFilteredCountries(sortedData);
       })
@@ -35,13 +37,18 @@ const App = () => {
           value={searchText}
           onChange={handleSearch}
           className="search-bar"
+          data-cy="searchInput"
         />
       </div>
       <div className="grid-container">
         {filteredCountries.map((country) => (
           <div key={country.cca3} className="countryCard">
-            <img src={country.flags.svg} alt={`${country.name.common} flag`} />
-            <h2>{country.name.common}</h2>
+            <img
+              src={country.flags.svg}
+              alt={`${country.name.common} flag`}
+              className="countryFlag"
+            />
+            <h2 className="countryName">{country.name.common}</h2>
           </div>
         ))}
       </div>

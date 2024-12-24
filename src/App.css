@@ -38,7 +38,7 @@ body {
 }
 
 /* Country Card */
-.card {
+.countryCard {
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -48,17 +48,17 @@ body {
   transition: transform 0.2s ease-in-out;
 }
 
-.card:hover {
+.countryCard:hover {
   transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
-.card img {
+.countryFlag {
   width: 100px;
   height: auto;
   margin-bottom: 10px;
 }
 
-.card h2 {
+.countryName {
   font-size: 16px;
   color: #333;
 }
